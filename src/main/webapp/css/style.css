@@ -266,9 +266,16 @@ textarea {
 }
 #new-room-btn {
     background-color: #A65A4E;
-    border: 10px #B36A5E;
+    box-shadow: 0 5px #666;
+    border: #222222;
     border-radius: 12px;
     padding: 10px 6px;
+}
+#new-room-btn:hover{
+    background-color: #EED7C5;
+}
+#new-room-btn:active{
+    transform: translateY(4px);
 }
 
 
