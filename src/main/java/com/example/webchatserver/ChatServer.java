@@ -19,7 +19,7 @@ import java.util.List;
 public class ChatServer {
 
     // contains a static List of ChatRoom used to control the existing rooms and their users
-    static HashMap<String, ChatRoom> rooms = new HashMap<>(); // indexed by string and get Chatroom
+    static HashMap<String, ChatRoom> existingRooms = new HashMap<>(); // indexed by string and get Chatroom
 
 
 

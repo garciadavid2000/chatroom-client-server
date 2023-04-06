@@ -17,7 +17,7 @@ function enterRoom(code){
     // refresh the list of rooms
 
     // create the web socket
-    ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/"+code);
+    ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/"+ code);
 
 
     // parse messages received from the server and update the UI accordingly
@@ -27,9 +27,14 @@ function enterRoom(code){
         let message = JSON.parse(event.data);
 
         // handle message
-
+        // frontend
         }
 }
 
-
+// using code from class example
+function timestamp() {
+    var d = new Date(), minutes = d.getMinutes();
+    if (minutes < 10) minutes = '0' + minutes;
+    return d.getHours() + ':' + minutes;
+}
 
