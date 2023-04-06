@@ -7,6 +7,9 @@ import jakarta.websocket.server.ServerEndpoint;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -16,6 +19,9 @@ import java.io.IOException;
 public class ChatServer {
 
     // contains a static List of ChatRoom used to control the existing rooms and their users
+    static HashMap<String, ChatRoom> rooms = new HashMap<>(); // indexed by string and get Chatroom
+
+
 
     // you may add other attributes as you see fit
 
@@ -24,7 +30,7 @@ public class ChatServer {
     @OnOpen
     public void open(@PathParam("roomID") String roomID, Session session) throws IOException, EncodeException {
 
-        session.getBasicRemote().sendText("First sample message to the client");
+        session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
 //        accessing the roomID parameter
         System.out.println(roomID);
 
