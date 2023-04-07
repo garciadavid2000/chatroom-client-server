@@ -21,8 +21,7 @@ public class ChatServer {
     // contains a static List of ChatRoom used to control the existing rooms and their users
 //    static HashMap<String, ChatRoom> rooms = new HashMap<>(); // indexed by string and get Chatroom
 //    static HashMap<ChatRoom, String> users = new HashMap<>();
-
-
+    static List<ChatRoom> rooms = new ArrayList<>();
     // you may add other attributes as you see fit
 
 
@@ -38,7 +37,8 @@ public class ChatServer {
 //        else {
 //            rooms.get(roomID).setUserName(session.getId(), session.getId());
 //        }
-        session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
+
+        session.getBasicRemote().sendText("{\"room\": \"" + roomID + "\", \"type\": \"chat\", \"message\":\"(Server ): Welcome to the chat room (" + roomID + "). Please state your username to begin.\"}");
 //        accessing the roomID parameter
         System.out.println(roomID);
 
@@ -62,7 +62,7 @@ public class ChatServer {
         // String room = jsonMsg.get("room").toString();
         String type = jsonMsg.get("type").toString();
         String message = jsonMsg.get("msg").toString();
-        session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
+       // session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
 //        if (type.equals("create")) {
 //            ChatRoom chatRoom = new ChatRoom(room,session.getId());
 //            rooms.put(room,chatRoom);

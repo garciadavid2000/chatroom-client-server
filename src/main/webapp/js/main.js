@@ -28,9 +28,7 @@ function enterRoom(code){
 
         // handle message
         // frontend
-
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
-
         }
 }
 document.getElementById("input").addEventListener("keyup", function (event) {
