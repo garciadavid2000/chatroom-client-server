@@ -37,17 +37,14 @@
   </nav>
 </div>
 
-<!--  </div>-->
-<section>
-  <div class="section-inner">
-    <h2>You are chatting in room <span id="room-id"></span></h2>
-    <div id="chat-container"></div>
-    <form id="chat-form">
-      <input type="text" id="chat-input" placeholder="Type your message...">
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</section>
+<div id="room">
+  <input type="text" id="room-code">
+  <button id="btRoom" onclick="enterRoom()">ENTER</button>
+</div>
+<textarea title="Chat Log" id="log" readonly
+          style="display: block; width: 50%; height: 600px; resize: none; margin: 0; padding: 0; border: 0;"></textarea>
+<input title="Chat Input" id="input" type="text" style="display: block; width: 100%; border-width: 1px 0 1px 0;"
+       autofocus/>
 
 
 

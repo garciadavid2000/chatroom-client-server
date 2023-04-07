@@ -28,13 +28,22 @@ function enterRoom(code){
 
         // handle message
         // frontend
+
+        document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
+
         }
 }
-
-// using code from class example
+document.getElementById("input").addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        let request = {"type":"chat", "msg":event.target.value};
+        ws.send(JSON.stringify(request));
+        event.target.value = "";
+    }
+});
 function timestamp() {
     var d = new Date(), minutes = d.getMinutes();
     if (minutes < 10) minutes = '0' + minutes;
     return d.getHours() + ':' + minutes;
 }
+
 
