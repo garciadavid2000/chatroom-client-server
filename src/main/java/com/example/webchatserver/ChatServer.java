@@ -29,13 +29,14 @@ public class ChatServer {
 
     @OnOpen
     public void open(@PathParam("roomID") String roomID, Session session) throws IOException, EncodeException {
-        if (!rooms.containsKey(roomID)) { // created
+        if (!rooms.containsKey(roomID)) { // created new room
             ChatRoom chatRoom = new ChatRoom(roomID,session.getId());
-            rooms.put(roomID,chatRoom);
+            rooms.put(roomID,chatRoom); // put the room in a hashmap
         } else {
-            rooms.get(roomID).setUserName(session.getId(), session.getId());
+            rooms.get(roomID).setUserName(session.getId(), ""); // add user to the existing room but set name to "" because user has not entered a name
         }
-        session.getBasicRemote().sendText("{\"room\": \"" + roomID + "\", \"type\": \"chat\", \"message\":\"(Server ): Welcome to the chat room (" + roomID + "). Please state your username to begin.\"}");
+
+        session.getBasicRemote().sendText("{\"room\": \"" + roomID + "\", \"type\": \"chat\", \"msg\":\"(Server): Welcome to the chat room (" + roomID + "). Please type your username to begin.\"}");
 //        accessing the roomID parameter
         System.out.println(rooms.toString());
     }
@@ -72,14 +73,58 @@ public class ChatServer {
 
     @OnMessage
     public void handleMessage(String comm, Session session) throws IOException, EncodeException {
-//        example getting unique userID that sent this message
-//        String roomId = rooms.get().getCode();
+        //String roomId = "";
+        //        example getting unique userID that sent this message
         String userId = session.getId();
+
+//        for (Map.Entry<String, ChatRoom> room: rooms.entrySet()) { // finding which room does user belong to
+//            if (room.getValue().inRoom(userId)) {
+//                roomId = room.getValue().getCode();
+//            }
+//        }
+
         JSONObject jsonMsg = new JSONObject(comm);
         // {"room": "123ABC", "type": "chat", "msg": "hi"}
-        String room = jsonMsg.get("room").toString();
+        String roomID = jsonMsg.get("room").toString();
         String type = jsonMsg.get("type").toString();
         String message = jsonMsg.get("msg").toString();
+
+        if (rooms.get(roomID).getUsers().get(userId).equals("")) { // their first message
+            // TO DO: VALIDATE STRING IS NOT EMPTY
+//            boolean flag = true;
+//            while (flag) {
+//                if (!(message.trim().equals("") || message == null)) {
+//                    flag = false;
+//                } else {
+//                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): Please enter a valid username! (empty strings not allowed)\"}");
+//                }
+//            }
+
+            rooms.get(roomID).setUserName(userId, message); // set username to first message
+            // acknowledge user
+            session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): Welcome, " + message + "!\"}");
+
+            // let other users know that user joined the channel
+            for (Session peer: session.getOpenSessions()) {
+                // check if peers are in that room and make sure current peer is not the same as self (the person who sent the message)
+                if (rooms.get(roomID).inRoom(peer.getId()) && !(peer.getId().equals(userId))) {
+                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): \"" + message + "\" joined the chat room.\"}");
+                }
+            }
+        } else { // not their first message
+            String username = rooms.get(roomID).getUsers().get(userId);
+            System.out.println(username); // printing who sent
+
+            // broadcasting message to everyone else in the room
+            for (Session peer : session.getOpenSessions()) {
+                // checking if peer is in the same room
+                if (rooms.get(roomID).inRoom(peer.getId())) {
+                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"("+username+"): " + message + "\"}");
+                }
+            }
+        }
+
+
        // session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
 //        if (type.equals("create")) {
 //            ChatRoom chatRoom = new ChatRoom(room,session.getId());
