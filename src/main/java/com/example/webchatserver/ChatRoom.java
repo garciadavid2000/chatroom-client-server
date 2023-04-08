@@ -59,4 +59,6 @@ public class ChatRoom {
     public boolean inRoom(String userID){
         return users.containsKey(userID);
     }
+
+    public boolean isEmpty() { return users.isEmpty();}
 }

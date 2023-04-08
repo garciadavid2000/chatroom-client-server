@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,7 +43,18 @@ public class ChatServer {
     @OnClose
     public void close(Session session) throws IOException, EncodeException {
         String userId = session.getId();
-        // do things for when the connection closes
+
+        for (Map.Entry<String, ChatRoom> room : rooms.entrySet()) {
+
+            if (room.getValue().inRoom(userId)) {
+                room.getValue().removeUser(userId);
+
+                if (room.getValue().isEmpty()) {
+                    rooms.remove(room.getKey());
+                }
+            }
+
+        }
     }
 
     @OnMessage
