@@ -58,7 +58,7 @@ public class ChatServer {
 
                     for (Session peer : session.getOpenSessions()){ //broadcast this person left the server
                         if(rooms.get(roomID).inRoom(peer.getId())) { // broadcast only to those in the same room
-                            peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server): "
+                            peer.getBasicRemote().sendText("{\"type\": \"chat\", \"msg\":\"(Server): "
                                     + room.getValue().getUsers().get(userId) + " left the chat room.\"}");
 
                         }
