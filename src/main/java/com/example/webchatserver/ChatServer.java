@@ -42,19 +42,32 @@ public class ChatServer {
 
     @OnClose
     public void close(Session session) throws IOException, EncodeException {
+        //get user id through session
         String userId = session.getId();
 
+        //
         for (Map.Entry<String, ChatRoom> room : rooms.entrySet()) {
 
             if (room.getValue().inRoom(userId)) {
+                String roomID = room.getValue().getCode();
                 room.getValue().removeUser(userId);
 
                 if (room.getValue().isEmpty()) {
                     rooms.remove(room.getKey());
+                } else {
+
+                    for (Session peer : session.getOpenSessions()){ //broadcast this person left the server
+                        if(rooms.get(roomID).inRoom(peer.getId())) { // broadcast only to those in the same room
+                            peer.getBasicRemote().sendText("{\"type\": \"chat\", \"msg\":\"(Server): "
+                                    + room.getValue().getUsers().get(userId) + " left the chat room.\"}");
+
+                        }
+                    }
                 }
             }
 
         }
+
     }
 
     @OnMessage
