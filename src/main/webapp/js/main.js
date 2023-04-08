@@ -28,7 +28,12 @@ function enterRoom(code){
 
         // handle message
         // frontend
+        let messageElement = document.createElement("p");
+        messageElement.innerText = message.message;
 
+        // append the message element to the sidebar
+        let sidebar = document.getElementById("sidebar");
+        sidebar.appendChild(messageElement);
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
         }
 }
