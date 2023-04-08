@@ -29,12 +29,13 @@ function enterRoom(code){
         // handle message
         // frontend
         let messageElement = document.createElement("p");
-        messageElement.innerText = message.message;
+        messageElement.innerText = message.room;
 
         // append the message element to the sidebar
         let sidebar = document.getElementById("sidebar");
         sidebar.appendChild(messageElement);
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
+
         }
 }
 document.getElementById("input").addEventListener("keyup", function (event) {

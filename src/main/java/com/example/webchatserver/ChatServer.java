@@ -22,29 +22,22 @@ public class ChatServer {
     // contains a static List of ChatRoom used to control the existing rooms and their users
 //    static HashMap<String, ChatRoom> rooms = new HashMap<>(); // indexed by string and get Chatroom
 //    static HashMap<ChatRoom, String> users = new HashMap<>();
-    static Map<String,ChatRoom> rooms = new HashMap<String,ChatRoom>();
+    static HashMap<String,ChatRoom> rooms = new HashMap<>();
     // you may add other attributes as you see fit
 
 
 
     @OnOpen
     public void open(@PathParam("roomID") String roomID, Session session) throws IOException, EncodeException {
-//        if (!rooms.containsKey(roomID)) { // created
-//            ChatRoom chatRoom = new ChatRoom(roomID,session.getId());
-//            rooms.put(roomID,chatRoom);
-//            users.put(chatRoom,session.getId());
-//            users.get(rooms.get(roomID));
-//        }
-//        else {
-//            rooms.get(roomID).setUserName(session.getId(), session.getId());
-//        }
-
+        if (!rooms.containsKey(roomID)) { // created
+            ChatRoom chatRoom = new ChatRoom(roomID,session.getId());
+            rooms.put(roomID,chatRoom);
+        } else {
+            rooms.get(roomID).setUserName(session.getId(), session.getId());
+        }
         session.getBasicRemote().sendText("{\"room\": \"" + roomID + "\", \"type\": \"chat\", \"message\":\"(Server ): Welcome to the chat room (" + roomID + "). Please state your username to begin.\"}");
 //        accessing the roomID parameter
-        System.out.println(roomID);
-
-
-
+        System.out.println(rooms.toString());
     }
 
     @OnClose
@@ -71,7 +64,7 @@ public class ChatServer {
         String userId = session.getId();
         JSONObject jsonMsg = new JSONObject(comm);
         // {"room": "123ABC", "type": "chat", "msg": "hi"}
-        // String room = jsonMsg.get("room").toString();
+        String room = jsonMsg.get("room").toString();
         String type = jsonMsg.get("type").toString();
         String message = jsonMsg.get("msg").toString();
        // session.getBasicRemote().sendText("Welcome to chat room: " + roomID);
