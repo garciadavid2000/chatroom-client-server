@@ -30,7 +30,6 @@ function enterRoom(code){
 
         // frontend
         //document.getElementById(message.room).value += "[" + timestamp() + "] " + message.message + "\n";
-
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
 
         }
