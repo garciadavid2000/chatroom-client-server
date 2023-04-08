@@ -10,16 +10,32 @@ function newRoom(){
         },
     })
         .then(response => response.text())
-        .then(response => enterRoom(response)); // enter the room with the code
+        .then(response => {
+            // create a new button element with the room ID as its text content
+            let button = document.createElement('button');
+            button.textContent = response;
+            button.style.display = 'block';
+            button.onclick = function() {
+                enterRoom(response);
+            };
+
+            // add the button to the sidebar
+            let sidebar = document.getElementById('sidebar');
+            let nav = sidebar.querySelector('nav');
+            let ul = nav.querySelector('ul');
+            let h2 = ul.querySelector('h2');
+            ul.insertBefore(button, h2.nextSibling);
+            enterRoom(response);
+        });
 }
+
 function enterRoom(code){
 
     // refresh the list of rooms
 
     // create the web socket
     ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/" + code);
-
-
+    
     // parse messages received from the server and update the UI accordingly
     ws.onmessage = function (event) {
         console.log(event.data);
@@ -27,13 +43,7 @@ function enterRoom(code){
         let message = JSON.parse(event.data);
 
         // handle message
-        // frontend
-        let messageElement = document.createElement("p");
-        messageElement.innerText = message.room;
 
-        // append the message element to the sidebar
-        let sidebar = document.getElementById("sidebar");
-        sidebar.appendChild(messageElement);
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
 
         }
