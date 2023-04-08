@@ -27,8 +27,12 @@ function enterRoom(code){
         let message = JSON.parse(event.data);
 
         // handle message
+
         // frontend
-        document.getElementById(message.room).value += "[" + timestamp() + "] " + message.message + "\n";
+        //document.getElementById(message.room).value += "[" + timestamp() + "] " + message.message + "\n";
+
+        document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
+
         }
 }
 document.getElementById("input").addEventListener("keyup", function (event) {
