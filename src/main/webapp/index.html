@@ -27,20 +27,18 @@
 <!-- Add your site or application content here -->
 
 <header><h1>Chat Server <h5><a href="about.html">About</a></h5></h1></header>
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
   <nav>
     <ul>
-      <h2>List Of Chat Rooms</h2>
+
+
       <h3><button id="new-room-btn" onclick="newRoom()">Create and Join New Room</button></h3>
+      <h2>List Of Chat Rooms</h2>
 
     </ul>
   </nav>
 </div>
 
-<div id="room">
-  <input type="text" id="room-code">
-  <button id="btRoom" onclick="enterRoom()">ENTER</button>
-</div>
 <textarea title="Chat Log" id="log" readonly
           style="display: block; width: 50%; height: 600px; resize: none; margin: 0; padding: 0; border: 0;"></textarea>
 <input title="Chat Input" id="input" type="text" style="display: block; width: 100%; border-width: 1px 0 1px 0;"

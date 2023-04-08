@@ -27,9 +27,13 @@ function enterRoom(code){
         let message = JSON.parse(event.data);
 
         // handle message
-
         // frontend
-        //document.getElementById(message.room).value += "[" + timestamp() + "] " + message.message + "\n";
+        let messageElement = document.createElement("p");
+        messageElement.innerText = message.message;
+
+        // append the message element to the sidebar
+        let sidebar = document.getElementById("sidebar");
+        sidebar.appendChild(messageElement);
         document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
 
         }
