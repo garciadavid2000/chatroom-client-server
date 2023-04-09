@@ -1,4 +1,5 @@
 let ws;
+let roomID;
 
 function newRoom(){
     // calling the ChatServlet to retrieve a new room ID
@@ -26,6 +27,7 @@ function newRoom(){
             let h2 = ul.querySelector('h2');
             ul.insertBefore(button, h2.nextSibling);
             enterRoom(response);
+            roomID = response.substring(0,5);
         });
 }
 
@@ -44,17 +46,28 @@ function enterRoom(code){
 
         // handle message
 
-        document.getElementById("log").value += "[" + timestamp() + "] " + message.message + "\n";
+        document.getElementById("log").value += "[" + timestamp() + "] " + message.msg + "\n";
 
         }
 }
-document.getElementById("input").addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-        let request = {"type":"chat", "msg":event.target.value};
-        ws.send(JSON.stringify(request));
-        event.target.value = "";
-    }
-});
+// document.getElementById("input").addEventListener("keyup", function (event) {
+//     if (event.keyCode === 13) {
+//         let request = {"type":"chat", "msg":event.target.value};
+//         ws.send(JSON.stringify(request));
+//         event.target.value = "";
+//     }
+// });
+
+function sendJSON() {
+    let input = document.getElementById("chat-input");
+
+    let request = {"room":roomID, "type":"chat", "msg":input.value};
+    requestJSON = JSON.stringify(request);
+    console.log(requestJSON);
+    ws.send(requestJSON);
+    input.value = "";
+}
+
 function timestamp() {
     var d = new Date(), minutes = d.getMinutes();
     if (minutes < 10) minutes = '0' + minutes;
