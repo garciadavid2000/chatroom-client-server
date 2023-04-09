@@ -264,21 +264,34 @@ textarea {
     color: #EED7C5;
     padding: 5px 10px 5px 5px;
 }
-#new-room-btn {
+
+.button {
     background-color: #A65A4E;
     box-shadow: 0 5px #666;
     border: #222222;
     border-radius: 12px;
     padding: 10px 6px;
 }
-#new-room-btn:hover{
+.button:hover{
     background-color: #EED7C5;
 }
-#new-room-btn:active{
+.button:active{
     transform: translateY(4px);
 }
-
-
+.buttons{
+    background-color: #EED7C5;
+    box-shadow: 0 5px #666;
+    border: #222222;
+    border-radius: 10px;
+    padding: 10px 6px;
+    margin-bottom: 10px;
+}
+.buttons:hover{
+    background-color: #666666;
+}
+.buttons:active{
+    transform: translateY(4px);
+}
 .row{
     display: flex;
     flex-direction: row;

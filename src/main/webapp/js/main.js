@@ -33,7 +33,7 @@ function newRoom(){
 function enterRoom(code){
 
     // refresh the list of rooms
-
+    refresh();
     // create the web socket
     ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/" + code);
 
@@ -71,6 +71,7 @@ function refresh(){
         let nav = sidebar.querySelector('nav');
         let ul = nav.querySelector('ul');
         let h2 = ul.querySelector('h2');
+        buttons[i].classList.add("buttons");
         ul.insertBefore(buttons[i], h2.nextSibling);
     }
 }
