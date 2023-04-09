@@ -1,6 +1,6 @@
 let ws;
-let roomID;
 
+let roomID;
 function newRoom(){
     // calling the ChatServlet to retrieve a new room ID
     let callURL= "http://localhost:8080/WSChatServer-1.0-SNAPSHOT/chat-servlet";
@@ -26,8 +26,11 @@ function newRoom(){
             let ul = nav.querySelector('ul');
             let h2 = ul.querySelector('h2');
             ul.insertBefore(button, h2.nextSibling);
+            roomID = response;
             enterRoom(response);
+
             roomID = response.substring(0,5);
+
         });
 }
 
@@ -37,7 +40,7 @@ function enterRoom(code){
 
     // create the web socket
     ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/" + code);
-    
+
     // parse messages received from the server and update the UI accordingly
     ws.onmessage = function (event) {
         console.log(event.data);
@@ -50,6 +53,7 @@ function enterRoom(code){
 
         }
 }
+
 // document.getElementById("input").addEventListener("keyup", function (event) {
 //     if (event.keyCode === 13) {
 //         let request = {"type":"chat", "msg":event.target.value};
@@ -65,8 +69,14 @@ function sendJSON() {
     requestJSON = JSON.stringify(request);
     console.log(requestJSON);
     ws.send(requestJSON);
-    input.value = "";
-}
+
+
+// function send() { // old one
+//     let input = document.getElementById("chat-input");
+//     let request = {"room":roomID, "type":"chat", "msg":input.value};
+//     ws.send(JSON.stringify(request));
+//     input.value = "";
+// }
 
 function timestamp() {
     var d = new Date(), minutes = d.getMinutes();
