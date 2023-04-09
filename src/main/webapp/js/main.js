@@ -74,6 +74,19 @@ function refresh(){
         buttons[i].classList.add("buttons");
         ul.insertBefore(buttons[i], h2.nextSibling);
     }
+
+    // calling the RoomServlet to retrieve list of rooms for all clients
+    let callURL= "http://localhost:8080/WSChatServer-1.0-SNAPSHOT/room-servlet";
+    fetch(callURL, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        });
 }
 
 function timestamp() {
