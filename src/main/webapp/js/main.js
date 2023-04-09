@@ -1,8 +1,6 @@
 let ws;
 
-let roomID;
 
-let buttons = []
 function newRoom(){
     // calling the ChatServlet to retrieve a new room ID
     let callURL= "http://localhost:8080/WSChatServer-1.0-SNAPSHOT/chat-servlet";
@@ -14,19 +12,7 @@ function newRoom(){
     })
         .then(response => response.text())
         .then(response => {
-            // create a new button element with the room ID as its text content
-            let button = document.createElement('button');
-            button.textContent = response;
-            button.style.display = 'block';
-            button.onclick = function() {
-                enterRoom(response);
-            };
-            buttons.push(button)
-
             enterRoom(response);
-
-            roomID = response.substring(0,5);
-
         });
 }
 
@@ -64,17 +50,6 @@ function sendJSON() {
 }
 
 function refresh(){
-    for (let i = 0; i < buttons.length; i++)
-    {
-        // add the button to the sidebar
-        let sidebar = document.getElementById('sidebar');
-        let nav = sidebar.querySelector('nav');
-        let ul = nav.querySelector('ul');
-        let h2 = ul.querySelector('h2');
-        buttons[i].classList.add("buttons");
-        ul.insertBefore(buttons[i], h2.nextSibling);
-    }
-
     // calling the RoomServlet to retrieve list of rooms for all clients
     let callURL= "http://localhost:8080/WSChatServer-1.0-SNAPSHOT/room-servlet";
     fetch(callURL, {
@@ -86,8 +61,29 @@ function refresh(){
         .then(response => response.json())
         .then(response => {
             console.log(response);
+            let sidebar = document.getElementById('sidebar');
+            let nav = sidebar.querySelector('nav');
+            let ul = nav.querySelector('ul');
+            let h2 = ul.querySelector('h2');
+            for(let i = 0; i < response.rooms.length; i++)
+            {
+                let roomID = response.rooms[i];
+                let existingButton = ul.querySelector(`button[data-roomid="${roomID}"]`);
+                if (!existingButton) {
+                    let button = document.createElement('button');
+                    button.textContent = roomID;
+                    button.style.display = 'block';
+                    button.setAttribute('data-roomid', roomID);
+                    button.classList.add('buttons');
+                    button.onclick = function() {
+                        enterRoom(roomID);
+                    };
+                    ul.insertBefore(button, h2.nextSibling);
+                }
+            }
         });
 }
+
 
 function timestamp() {
     var d = new Date(), minutes = d.getMinutes();
