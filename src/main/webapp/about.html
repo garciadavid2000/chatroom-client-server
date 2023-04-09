@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <title>Chat Server - About</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" id="theme-style">
+    <link rel="stylesheet" href="css/lightmode.css" id="theme-style-light" disabled>
 </head>
 <body>
 <section>
@@ -16,13 +17,14 @@
     <div class="sidebar">
         <nav>
             <ul>
-                <h3><a href="index.html">Chat Server</a></h3>
+                <h3><a  href="index.html">Chat Server</a></h3>
+                <button class= "button" id="mode-toggle">Toggle Light Mode</button>
             </ul>
         </nav>
     </div>
 </section>
 <section>
-    <div class="section-inner">
+    <div class="section-inner" id="about">
         <h1>Our Team</h1>
         <p>This website is brought to you by:</p>
         <ul>
@@ -31,7 +33,7 @@
             <li><a href = "https://github.com/Sheida-Ebrahimi">Sheida Ebrahimi Siaghi</a></li>
         </ul></div>
 </section>
-
+<script src="js/main.js"></script>
 
 </body>
 </html>

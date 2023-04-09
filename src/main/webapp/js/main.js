@@ -94,5 +94,34 @@ function timestamp() {
     if (minutes < 10) minutes = '0' + minutes;
     return d.getHours() + ':' + minutes;
 }
+// light-mode, dark-mode toggle
+const modeToggleBtn = document.getElementById('mode-toggle');
+
+function toggleMode() {
+    const body = document.body;
+    const sidebar = document.querySelector('.sidebar');
+    body.classList.toggle('light-mode');
+    sidebar.classList.toggle('light-mode');
+    if (body.classList.contains('light-mode')) {
+        modeToggleBtn.textContent = 'Toggle Dark Mode';
+    } else {
+        modeToggleBtn.textContent = 'Toggle Light Mode';
+    }
+    var darkStylesheet = document.getElementById("theme-style");
+    var lightStylesheet = document.getElementById("theme-style-light");
+    var themeToggle = document.querySelector(".theme-toggle");
+
+    if (darkStylesheet.disabled) {
+        darkStylesheet.disabled = false;
+        lightStylesheet.disabled = true;
+        themeToggle.textContent = "Toggle Dark Mode";
+    } else {
+        darkStylesheet.disabled = true;
+        lightStylesheet.disabled = false;
+        themeToggle.textContent = "Toggle Light Mode";
+    }
+}
+
+modeToggleBtn.addEventListener('click', toggleMode);
 
 

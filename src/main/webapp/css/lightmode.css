@@ -259,58 +259,64 @@ textarea {
     float: left;
     width: 20%;
     height: 100vh;
-    background-color: #312244;
+    background-color: #9394a5;
     margin: 0;
-    color: #EED7C5;
+    color: #484b6a;
     padding: 5px 10px 5px 5px;
     overflow: auto;
 }
 
 .button {
-    background-color: #0B525B;
-    box-shadow: 0 5px #1B3A4B;
-    border: #222222;
-    border-radius: 12px;
-    padding: 10px 6px;
-    color: #EED7C5;
-}
-.button:hover{
-    background-color: #006466;
-}
-.button:active{
-    transform: translateY(4px);
-}
-.buttons{
-    background-color: #0B525B;
-    box-shadow: 0 5px #1B3A4B;
+    background-color: #484b6a;
+    box-shadow: 0 5px #3E1F47;
     border: #222222;
     border-radius: 10px;
     padding: 10px 6px;
     margin-bottom: 10px;
-    color: #EED7C5;
+    color: #fafafa;
 }
-.buttons:hover{
-    background-color: #006466;
+.button:hover {
+    background-color: #393C54;
 }
-.buttons:active{
+.button:active {
     transform: translateY(4px);
 }
-.row{
+
+.buttons {
+    background-color: #484b6a;
+    box-shadow: 0 5px #1B3A4B;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    color: #fafafa;
+}
+.buttons:hover {
+    background-color: #393C54;
+}
+.buttons:active {
+    transform: translateY(4px);
+}
+
+.row {
     display: flex;
     flex-direction: row;
 }
+
 header {
-    background-color: #272640;
-    color: #EED7C5;
+    background-color: #484b6a;
+    color: #fafafa;
     padding: 10px;
     margin: 0;
     display: flex;
 }
-body  {
-    background-color: #3E1F47;
-    color: #EED7C5;
+
+body {
+    background-color: #d2d3db;
+    color: #484b6a;
     font-family: "Andale Mono", monospace;
 }
+
 .header-content {
     text-align: left;
 }
@@ -320,28 +326,36 @@ body  {
     padding: 10px;
     overflow: hidden;
 }
+
 .output-box {
     border: 1px solid black;
     padding: 10px;
 }
-#log{
-    background-color: #4D194D;
-    color: #EED7C5;
+
+#log {
+    background-color: #e4e5f1;
+    color: #222;
 }
+
 /*stop visited links from turning purple*/
 a:visited {
     text-decoration: none;
-    color: #EED7C5;
+    color: #3E1F47;
 }
-a:hover { text-decoration: underline; }
-a{
+a:hover {
+    text-decoration: underline;
+}
+a {
     text-decoration: none;
-    color: #EED7C5;
-}
-#chat-input{
-    width: 80%;
-    background-color: #312244;
-    color: #EED7C5;
-    border: none;
+    color: #3E1F47;
 }
 
+#chat-input {
+    width: 80%;
+    background-color: #f1f1f1;
+    color: #222;
+    border: none;
+}
+#about{
+    color: #484b6a;
+}
