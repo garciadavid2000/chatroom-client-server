@@ -1,6 +1,8 @@
 let ws;
 
 let roomID;
+
+let buttons = []
 function newRoom(){
     // calling the ChatServlet to retrieve a new room ID
     let callURL= "http://localhost:8080/WSChatServer-1.0-SNAPSHOT/chat-servlet";
@@ -19,14 +21,8 @@ function newRoom(){
             button.onclick = function() {
                 enterRoom(response);
             };
+            buttons.push(button)
 
-            // add the button to the sidebar
-            let sidebar = document.getElementById('sidebar');
-            let nav = sidebar.querySelector('nav');
-            let ul = nav.querySelector('ul');
-            let h2 = ul.querySelector('h2');
-            ul.insertBefore(button, h2.nextSibling);
-            roomID = response;
             enterRoom(response);
 
             roomID = response.substring(0,5);
@@ -71,12 +67,17 @@ function sendJSON() {
     ws.send(requestJSON);
 }
 
-// function send() { // old one
-//     let input = document.getElementById("chat-input");
-//     let request = {"room":roomID, "type":"chat", "msg":input.value};
-//     ws.send(JSON.stringify(request));
-//     input.value = "";
-// }
+function refresh(){
+    for (let i = 0; i < buttons.length; i++)
+    {
+        // add the button to the sidebar
+        let sidebar = document.getElementById('sidebar');
+        let nav = sidebar.querySelector('nav');
+        let ul = nav.querySelector('ul');
+        let h2 = ul.querySelector('h2');
+        ul.insertBefore(buttons[i], h2.nextSibling);
+    }
+}
 
 function timestamp() {
     var d = new Date(), minutes = d.getMinutes();
