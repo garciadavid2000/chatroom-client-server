@@ -129,6 +129,7 @@ public class ChatServer {
                 if (rooms.get(roomID).inRoom(peer.getId()) && !(peer.getId().equals(userId))) {
                     session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): \"" + message + "\" joined the chat room.\"}");
                     System.out.println("Joined the chatroom");
+
                 }
             }
         } else { // not their first message
