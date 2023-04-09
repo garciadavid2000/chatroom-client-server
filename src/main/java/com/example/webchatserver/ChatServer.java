@@ -29,6 +29,25 @@ public class ChatServer {
 
     @OnOpen
     public void open(@PathParam("roomID") String roomID, Session session) throws IOException, EncodeException {
+        //TODO : check if user is in another room. if they are remove them and then add them to the other room
+        // if not then just add them to the room
+        String userId = session.getId();
+
+        for (Map.Entry<String, ChatRoom> room : rooms.entrySet()) {
+
+            if (room.getValue().inRoom(userId)) {
+                room.getValue().removeUser(userId);
+                for (Session peer : session.getOpenSessions()){ //broadcast this person left the server
+                    if(rooms.get(roomID).inRoom(peer.getId())) { // broadcast only to those in the same room
+                        peer.getBasicRemote().sendText("{\"type\": \"chat\", \"msg\":\"(Server): "
+                                + room.getValue().getUsers().get(userId) + " left the chat room.\"}");
+
+                    }
+                }
+            }
+
+        }
+
         if (!rooms.containsKey(roomID)) { // created new room
             ChatRoom chatRoom = new ChatRoom(roomID,session.getId());
             rooms.put(roomID,chatRoom); // put the room in a hashmap
