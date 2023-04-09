@@ -127,7 +127,7 @@ public class ChatServer {
             for (Session peer: session.getOpenSessions()) {
                 // check if peers are in that room and make sure current peer is not the same as self (the person who sent the message)
                 if (rooms.get(roomID).inRoom(peer.getId()) && !(peer.getId().equals(userId))) {
-                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): \"" + message + "\" joined the chat room.\"}");
+                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): " + message + " joined the chat room.\"}");
                 }
             }
         } else { // not their first message
