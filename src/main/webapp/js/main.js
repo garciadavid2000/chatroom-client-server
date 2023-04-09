@@ -48,15 +48,11 @@ function enterRoom(code){
         document.getElementById("log").value += "[" + timestamp() + "] " + message.msg + "\n";
 
         }
+    document.getElementById("section-inner").innerHTML = "<h2>You are chatting in room: " + code + "</h2>";
+
+
 }
 
-// document.getElementById("input").addEventListener("keyup", function (event) {
-//     if (event.keyCode === 13) {
-//         let request = {"type":"chat", "msg":event.target.value};
-//         ws.send(JSON.stringify(request));
-//         event.target.value = "";
-//     }
-// });
 
 function sendJSON() {
     let input = document.getElementById("chat-input");
