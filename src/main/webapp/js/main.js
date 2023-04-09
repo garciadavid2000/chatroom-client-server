@@ -65,11 +65,11 @@ function enterRoom(code){
 function sendJSON() {
     let input = document.getElementById("chat-input");
 
-    let request = {"room":roomID, "type":"chat", "msg":input.value};
+    let request = {"room": roomID, "type": "chat", "msg": input.value};
     requestJSON = JSON.stringify(request);
     console.log(requestJSON);
     ws.send(requestJSON);
-
+}
 
 // function send() { // old one
 //     let input = document.getElementById("chat-input");
