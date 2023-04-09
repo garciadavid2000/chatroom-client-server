@@ -127,7 +127,7 @@ public class ChatServer {
             for (Session peer: session.getOpenSessions()) {
                 // check if peers are in that room and make sure current peer is not the same as self (the person who sent the message)
                 if (rooms.get(roomID).inRoom(peer.getId()) && !(peer.getId().equals(userId))) {
-                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): " + message + " joined the chat room.\"}");
+                    peer.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"(Server): " + message + " joined the chat room.\"}");
                     System.out.println("Joined the chatroom");
 
                 }
@@ -137,10 +137,11 @@ public class ChatServer {
             System.out.println(username); // printing who sent
 
             // broadcasting message to everyone else in the room
+            System.out.print(rooms.toString());
             for (Session peer : session.getOpenSessions()) {
                 // checking if peer is in the same room
                 if (rooms.get(roomID).inRoom(peer.getId())) {
-                    session.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"("+username+"): " + message + "\"}");
+                    peer.getBasicRemote().sendText("{\"room\": \""+ roomID +"\",\"type\": \"chat\", \"msg\":\"("+username+"): " + message + "\"}");
                     System.out.println("broadcasting to other users");
                 }
             }
