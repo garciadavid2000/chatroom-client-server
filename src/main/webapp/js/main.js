@@ -21,6 +21,9 @@ function enterRoom(code){
     roomID = code.substring(0,5);
     // refresh the list of rooms
     refresh();
+    if (ws != null) {
+        ws.close();
+    }
     // create the web socket
     ws = new WebSocket("ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/" + code);
 

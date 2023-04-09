@@ -70,20 +70,16 @@ public class ChatServer {
 
             if (room.getValue().inRoom(userId)) {
                 String roomID = room.getValue().getCode();
+                String username = rooms.get(roomID).getUsers().get(userId);
                 room.getValue().removeUser(userId);
-
-                if (room.getValue().isEmpty()) {
-                    rooms.remove(room.getKey());
-                } else {
 
                     for (Session peer : session.getOpenSessions()){ //broadcast this person left the server
                         if(rooms.get(roomID).inRoom(peer.getId())) { // broadcast only to those in the same room
                             peer.getBasicRemote().sendText("{\"type\": \"chat\", \"msg\":\"(Server): "
-                                    + room.getValue().getUsers().get(userId) + " left the chat room.\"}");
+                                    + username + " left the chat room.\"}");
 
                         }
                     }
-                }
             }
 
         }
