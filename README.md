@@ -2,7 +2,7 @@
 > Course: CSCI 2020U: Software Systems Development and Integration
 
 ## Authors
-Sid Das 100830959, Sheida Ebrahimi 100840009, David Garcia 100820537
+Siddhant Das 100830959, Sheida Ebrahimi Siaghi 100840009, David Garcia 100820537
 
 ### How to run
 The guide on how to run this project will be assuming the user is using Intellij IDEA and GlassFish 7.0.0.
@@ -39,7 +39,10 @@ and you can even toggle between dark and light mode. Here is an example of the l
 ![usingRoom2.png](usingRoom2.png)
 Another improvement we made involves the creation of `RoomServlet.java`. This class handles a get request from the client and sends a list of current active
 rooms in the form of the json. This aids the `refresh()` function in the `main.js` file which updates the list of rooms for all the clients.
+We also added room switching functionality so users can switch between rooms and communicate with users already in those rooms.
 
 [//]: # (We also implemented a Chat History functionality which displays the history of chat rooms when a new user joins.)
 
 ### External Resources
+The main dependencies we used for this project were jakarta for websockets and org.json for parsing JSON files on the server side.
+All the dependencies are listed in the `pom.xml` file which is in the root directory of the repository, and have the relevant website links commented above them.
