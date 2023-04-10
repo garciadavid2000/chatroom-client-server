@@ -29,7 +29,7 @@ when entering a room.
 Here is an example of what it would look like to use our application
 ![usingRoom1.png](usingRoom1.png)
 
-There is also an About Us page you can see if you click about in the top left
+There is also an About Us page you can see if you click `About` in the top left
 ![aboutUs.png](aboutUs.png)
 Clicking on our names takes you to our respective GitHub pages and clicking 'Chat Server' in the top left 
 
