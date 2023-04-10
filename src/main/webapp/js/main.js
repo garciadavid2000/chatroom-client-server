@@ -43,6 +43,13 @@ function enterRoom(code){
 
 }
 
+const input = document.getElementById('chat-input');
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        sendJSON();
+    }
+});
 
 function sendJSON() {
     let input = document.getElementById("chat-input");
