@@ -2,7 +2,7 @@
 > Course: CSCI 2020U: Software Systems Development and Integration
 
 ## Authors
-Sid Das, Sheida Ebrahimi, David Garcia
+Sid Das 100830959, Sheida Ebrahimi 100840009, David Garcia 100820537
 
 ### How to run
 The guide on how to run this project will be assuming the user is using Intellij IDEA and GlassFish 7.0.0.
@@ -19,7 +19,8 @@ The guide on how to run this project will be assuming the user is using Intellij
 Now that the server is running you should see a screen that looks like this
 ![dashboard.png](landing.png)
 To create and join a chatroom, simply click the create and join new room button. This will prompt you for a username and notify to everybody
-else in the room that you have joined. Now you can begin messaging. If another user wishes to use the same room, open another tab and paste http://localhost:8080/WSChatServer-1.0-SNAPSHOT/.
+else in the room that you have joined. You can enter text into the text field by either typing text and pressing send or typing text and pressing 'enter'
+on your keyboard. Now you can begin messaging. If another user wishes to use the same room, open another tab and paste http://localhost:8080/WSChatServer-1.0-SNAPSHOT/.
 If the room the first user is in does not show up in the list of chat rooms, simply press the refresh button under the join room button and then click the button that appears to join
 the room. This will repeat the username setting process and now both users should be able to talk to each other. This process can be repeated by creating more chat rooms
 and swapping between rooms at the user's will. A notification will be sent to everybody else in a room whenever a user leaves and a set username prompt will always be shown
@@ -33,6 +34,12 @@ There is also an About Us page you can see if you click about in the top left
 Clicking on our names takes you to our respective GitHub pages and clicking 'Chat Server' in the top left 
 
 ### Project Improvements
-The most notable improvement we made was our user interface. We have implemented a beautiful interface that is easy on the eyes 
+The most notable improvement we made was our user interface. We have implemented a beautiful interface that is easy on the eyes,
+and you can even toggle between dark and light mode. Here is an example of the light mode interface.
+![usingRoom2.png](usingRoom2.png)
+Another improvement we made involves the creation of `RoomServlet.java`. This class handles a get request from the client and sends a list of current active
+rooms in the form of the json. This aids the `refresh()` function in the `main.js` file which updates the list of rooms for all the clients.
+
+[//]: # (We also implemented a Chat History functionality which displays the history of chat rooms when a new user joins.)
 
 ### External Resources
