@@ -1,38 +1,27 @@
 # Assignment 02 - Web Chat Server (Instructions) - Sid is here
 > Course: CSCI 2020U: Software Systems Development and Integration
 
-This is the template for your Assignment 02.
+## Authors
+Sid Das, Sheida Ebrahimi, David Garcia
 
-## Overview
-You want to create a web chat server with multiple rooms. This will allow you and your friends to chat privately.
+### How to run
+The guide on how to run this project will be assuming the user is using Intellij IDEA and GlassFish 7.0.0.
+- firstly clone the repo to your local computer
+- open the repo in Intellij
+- in the top right click the configuration drop down and 'Edit Configurations'
+- click 'Add Configuration' and select GlassFish local 
+- type domain1 into the domain entry box
+- select the 'Deployment' tab and select 'spamDetector:war exploded'.
+- the glassfish server has now been set up and you can click the green arrow in the top right 
+- this should automatically open a tab in your browser but if it does not then navigate to http://localhost:8080/WSChatServer-1.0-SNAPSHOT/
 
-- Check the `Canvas/Assingments/Assignment 02` for more the detailed instructions.
-
-### WebChatServer - Endpoints
-
-**Connect to the websocket**
-
-From the `ChatServer` class. This will create a new client connect to the web server. The server and client communicate using `json` messages.
-- `ws://localhost:8080/WSChatServer-1.0-SNAPSHOT/ws/{roomID}`
-
-
-**GET a new (unique) room code**
-
-From the `ChatServlet` class. This will return a `text/plain` content type.
-- `http://localhost:8080/WSChatServer-1.0-SNAPSHOT/chat-servlet`
-See a sample of the response data:
-```
-1B9FN
-```
-
-### WebChatServer - client
-
-Your client is in the `webapp` folder, when started the application will run at `http://localhost:8080/WSChatServer-1.0-SNAPSHOT/`; which will load the `index.html` file.
-
-Your client-side code will be in the `js/main.js` javascript file.
-
-> Obs. Feel free to create other helper classes as you see fit.
-> 
-
-
+### How to use
+Now that the server is running you should see a screen that looks like this
+![dashboard.png](landing.png)
+To create and join a chatroom, simply click the create and join new room button. This will prompt you for a username and notify to everybody
+else in the room that you have joined. Now you can begin messaging. If another user wishes to use the same room, open another tab and paste http://localhost:8080/WSChatServer-1.0-SNAPSHOT/.
+If the room the first user is in does not show up in the list of chat rooms, simply press the refresh button under the join room button and then click the button that appears to join
+the room. This will repeat the username setting process and now both users should be able to talk to each other. This process can be repeated by creating more chat rooms
+and swapping between rooms at the user's will. A notification will be sent to everybody else in a room whenever a user leaves and a set username prompt will always be shown
+when entering a room.
 
