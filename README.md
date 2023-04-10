@@ -31,7 +31,7 @@ Here is an example of what it would look like to use our application
 
 There is also an About Us page you can see if you click `About` in the top left
 ![aboutUs.png](aboutUs.png)
-Clicking on our names takes you to our respective GitHub pages and clicking 'Chat Server' in the top left 
+Clicking on our names takes you to our respective GitHub pages and clicking 'Chat Server' in the top left takes you back to the main chatting page.
 
 ### Project Improvements
 The most notable improvement we made was our user interface. We have implemented a beautiful interface that is easy on the eyes,
