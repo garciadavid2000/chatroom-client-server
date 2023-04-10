@@ -37,12 +37,12 @@ Clicking on our names takes you to our respective GitHub pages and clicking 'Cha
 The most notable improvement we made was our user interface. We have implemented a beautiful interface that is easy on the eyes,
 and you can even toggle between dark and light mode. Here is an example of the light mode interface.
 ![usingRoom2.png](usingRoom2.png)
-Another improvement we made involves the creation of `RoomServlet.java`. This class handles a get request from the client and sends a list of current active
-rooms in the form of the json. This aids the `refresh()` function in the `main.js` file which updates the list of rooms for all the clients.
+Another improvement we made involves the creation of `RoomServlet.java`. This class handles a `GET` request from the client and sends a list of current active
+rooms in the form of a `JSON`. This aids the `refresh()` function in the `main.js` file which updates the list of rooms for all the clients.
 We also added room switching functionality so users can switch between rooms and communicate with users already in those rooms.
 
 [//]: # (We also implemented a Chat History functionality which displays the history of chat rooms when a new user joins.)
 
 ### External Resources
-The main dependencies we used for this project were jakarta for websockets and org.json for parsing JSON files on the server side.
-All the dependencies are listed in the `pom.xml` file which is in the root directory of the repository, and have the relevant website links commented above them.
+The main dependencies we used for this project were `jakarta` for websockets and `org.json` for parsing `JSON` files on the server side.
+All the dependencies are listed in the `pom.xml` file which is in the root directory of the repository, and they have their relevant website links commented above them.
