@@ -11,7 +11,7 @@ The guide on how to run this project will be assuming the user is using Intellij
 - in the top right click the configuration drop down and 'Edit Configurations'
 - click 'Add Configuration' and select GlassFish local 
 - type domain1 into the domain entry box
-- select the 'Deployment' tab and select '<repository name>:war exploded'
+- select the 'Deployment' tab and select `<repository name>:war exploded`
 - the glassfish server has now been set up, and you can click the green arrow in the top right 
 - this should automatically open a tab in your browser but if it does not then navigate to http://localhost:8080/WSChatServer-1.0-SNAPSHOT/
 
