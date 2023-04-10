@@ -12,7 +12,7 @@ The guide on how to run this project will be assuming the user is using Intellij
 - click 'Add Configuration' and select GlassFish local 
 - type domain1 into the domain entry box
 - select the 'Deployment' tab and select 'spamDetector:war exploded'.
-- the glassfish server has now been set up and you can click the green arrow in the top right 
+- the glassfish server has now been set up, and you can click the green arrow in the top right 
 - this should automatically open a tab in your browser but if it does not then navigate to http://localhost:8080/WSChatServer-1.0-SNAPSHOT/
 
 ### How to use
@@ -25,3 +25,14 @@ the room. This will repeat the username setting process and now both users shoul
 and swapping between rooms at the user's will. A notification will be sent to everybody else in a room whenever a user leaves and a set username prompt will always be shown
 when entering a room.
 
+Here is an example of what it would look like to use our application
+![usingRoom1.png](usingRoom1.png)
+
+There is also an About Us page you can see if you click about in the top left
+![aboutUs.png](aboutUs.png)
+Clicking on our names takes you to our respective GitHub pages and clicking 'Chat Server' in the top left 
+
+### Project Improvements
+The most notable improvement we made was our user interface. We have implemented a beautiful interface that is easy on the eyes 
+
+### External Resources
