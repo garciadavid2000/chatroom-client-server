@@ -58,6 +58,7 @@ function sendJSON() {
     requestJSON = JSON.stringify(request);
     console.log(requestJSON);
     ws.send(requestJSON);
+    input.value = "";
 }
 
 function refresh(){
